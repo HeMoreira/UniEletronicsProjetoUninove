@@ -1,0 +1,314 @@
+﻿/* ==========================================================================
+   ESTILOS ESPECÍFICOS: CONTROLE DE ESTOQUE
+   Caminho: wwwroot/css/estoque.css
+   ========================================================================== */
+
+.estoque-container {
+    display: flex;
+    min-height: 75vh;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Sidebar Local */
+.sidebar-estoque {
+    width: 240px;
+    background: linear-gradient(180deg, #1E3A8A 0%, #2563eb 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 15px;
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    width: 130px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.sidebar-estoque h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+    .sidebar-menu li {
+        margin: 12px 0;
+    }
+
+        .sidebar-menu li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+        }
+
+            .sidebar-menu li a:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                opacity: 0.9;
+            }
+
+/* Área da Tabela e Busca */
+.tabela-container {
+    flex-grow: 1;
+    padding: 25px;
+    background-color: #f8fafc;
+}
+
+.busca-container {
+    margin-bottom: 20px;
+}
+
+#inputBusca {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    #inputBusca:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+.tabela-estoque {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .tabela-estoque th {
+        background-color: #334155;
+        color: #ffffff;
+        padding: 12px 15px;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .tabela-estoque td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .tabela-estoque tbody tr {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 1;
+    }
+
+        .tabela-estoque tbody tr.hidden {
+            opacity: 0;
+            transform: translateX(-10px);
+            pointer-events: none;
+        }
+
+/* Imagens dos Produtos */
+.img-produto {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Botões de Ação */
+.btn-edit, .btn-delete {
+    padding: 6px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    transition: filter 0.2s ease;
+}
+
+.btn-edit {
+    background-color: #2563eb;
+}
+
+.btn-delete {
+    background-color: #ef4444;
+}
+
+    .btn-edit:hover, .btn-delete:hover {
+        filter: brightness(0.85);
+    }
+
+/* Status das Quantidades */
+.qnt-baixa {
+    font-weight: bold;
+    color: #dc2626;
+    background-color: #fee2e2;
+    border-radius: 4px;
+}
+
+.qnt-media {
+    font-weight: bold;
+    color: #d97706;
+    background-color: #fef3c7;
+    border-radius: 4px;
+}
+
+.qnt-normal {
+    font-weight: bold;
+    color: #16a34a;
+    background-color: #dcfce7;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   ESTOQUE - estilos extras (modal de edição, alertas, botão excluir em form)
+   Caminho: wwwroot/css/estoque-extra.css
+   ========================================================================== */
+
+/* O botão Excluir agora fica dentro de um <form>; mantém lado a lado com Editar */
+.tabela-estoque td.acoes {
+    white-space: nowrap;
+}
+
+    .tabela-estoque td.acoes .form-excluir {
+        display: inline;
+        margin: 0;
+    }
+
+.linha-vazia td {
+    text-align: center;
+    padding: 24px;
+    opacity: 0.7;
+}
+
+/* Alertas */
+.alerta {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+}
+
+.alerta-sucesso {
+    background: #e6f6ea;
+    color: #1d6b34;
+    border: 1px solid #b7e3c4;
+}
+
+.alerta-erro {
+    background: #fdeaea;
+    color: #9b1c1c;
+    border: 1px solid #f3bcbc;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+    .modal-overlay.aberto {
+        display: flex;
+    }
+
+.modal-box {
+    background: #fff;
+    color: #222;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+    .modal-box h3 {
+        margin: 0 0 16px;
+    }
+
+    .modal-box label {
+        display: block;
+        margin: 12px 0 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .modal-box input[type="text"],
+    .modal-box input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    .modal-box input:focus {
+        outline: 2px solid #3b82f6;
+        border-color: transparent;
+    }
+
+.modal-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.btn-cancelar,
+.btn-salvar {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background: #e5e7eb;
+    color: #222;
+}
+
+.btn-salvar {
+    background: #2563eb;
+    color: #fff;
+}
+
+    .btn-salvar:hover {
+        background: #1d4ed8;
+    }

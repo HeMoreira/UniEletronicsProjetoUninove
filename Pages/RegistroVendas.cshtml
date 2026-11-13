@@ -1,0 +1,132 @@
+﻿@page
+@model UniEletronicsProjetoUninove.Pages.RegistroVendasModel
+@{
+    ViewData["Title"] = "Registro de Vendas";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/registro-vendas.css" asp-append-version="true" />
+}
+
+<div class="vendas-card">
+    <h1 class="vendas-titulo">Registro de Produtos e Vendas</h1>
+
+    <form method="post" enctype="multipart/form-data" class="form-vendas">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="ProdutoInput.Nome">Nome do produto</label>
+            <input asp-for="ProdutoInput.Nome" class="form-control" placeholder="Nome do produto" />
+            <span asp-validation-for="ProdutoInput.Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProdutoInput.Categoria">Categoria</label>
+            <input asp-for="ProdutoInput.Categoria" class="form-control" placeholder="Ex: Eletrônicos, Acessórios" />
+            <span asp-validation-for="ProdutoInput.Categoria" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProdutoInput.Preco">Preço (R$)</label>
+            <input asp-for="ProdutoInput.Preco" type="number" step="0.01" class="form-control" placeholder="0.00" />
+            <span asp-validation-for="ProdutoInput.Preco" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProdutoInput.Quantidade">Quantidade</label>
+            <input asp-for="ProdutoInput.Quantidade" class="form-control" placeholder="Quantidade" min="1" />
+            <span asp-validation-for="ProdutoInput.Quantidade" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProdutoInput.DataDeRegistro">Data de Registro</label>
+            <input asp-for="ProdutoInput.DataDeRegistro" type="date" class="form-control" />
+            <span asp-validation-for="ProdutoInput.DataDeRegistro" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UploadImagem">Imagem Principal</label>
+            <input asp-for="UploadImagem" type="file" accept="image/*" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UploadImagensSecundarias">Imagens Secundárias (Opcional, máx. 5)</label>
+            <input asp-for="UploadImagensSecundarias" type="file" accept="image/*" multiple class="form-control" />
+            <span asp-validation-for="UploadImagensSecundarias" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-registrar">Cadastrar Produto</button>
+    </form>
+
+    <div class="total-vendas">
+        Total de produtos cadastrados: <span>@Model.Produtos.Count</span>
+    </div>
+
+    <div class="table-responsive">
+        <table class="tabela-vendas">
+            <thead>
+                <tr>
+                    <th>Imagem Principal</th>
+                    <th>Imagens Secundárias</th>
+                    <th>Código</th>
+                    <th>Produto</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Qtd</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Produtos.Any())
+                {
+                    @foreach (var prod in Model.Produtos)
+                    {
+                        <tr>
+                            <td>
+                                @if (!string.IsNullOrEmpty(prod.ImagemPrincipal))
+                                {
+                                    <img src="@prod.ImagemPrincipal" alt="@prod.Nome" width="50" height="50" style="object-fit:cover; border-radius:4px;" />
+                                }
+                                else
+                                {
+                                    <span>Sem foto</span>
+                                }
+                            </td>
+                            <td>
+                                @if (prod.ImagensSecundarias.Any())
+                                {
+                                    <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                                        @foreach (var imgSec in prod.ImagensSecundarias)
+                                        {
+                                            <img src="@imgSec.Url" width="35" height="35" style="object-fit:cover; border-radius:3px;" />
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span>Nenhuma</span>
+                                }
+                            </td>
+                            <td>@prod.Codigo.ToString("D3")</td>
+                            <td>@prod.Nome</td>
+                            <td>@prod.Categoria</td>
+                            <td>R$ @prod.Preco.ToString("F2")</td>
+                            <td>@prod.Quantidade</td>
+                            <td>@prod.DataDeRegistro.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8">Nenhum produto cadastrado.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

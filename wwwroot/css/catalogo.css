@@ -1,0 +1,152 @@
+﻿/* ========================================================
+   ESTILOS ESPECÍFICOS - PÁGINA DE CATÁLOGO
+   Arquivo: wwwroot/css/catalogo.css
+   (Consolidação de base.css, layout.css e componentes.css)
+   ======================================================== */
+
+/* Regras do layout geral da página */
+.layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 220px;
+}
+
+.produtos {
+    flex: 1;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.conteinerprodutos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* --- Componentes: Categorias e Filtros --- */
+.categoria {
+    width: 220px;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 0;
+}
+
+    .categoria .titulo-categoria {
+        background: linear-gradient(90deg, #1E3A8A, #2563EB);
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+    .categoria ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .categoria li {
+        background: white;
+        color: black;
+        padding: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .categoria li:hover {
+            background: #ddd;
+        }
+
+.filtro {
+    width: 220px;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 0;
+}
+
+    .filtro .titulo-filtro {
+        background: linear-gradient(90deg, #1E3A8A, #2563EB);
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .filtro ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .filtro li {
+        background: white;
+        color: black;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 8px;
+    }
+
+    .filtro input {
+        margin-right: 8px;
+    }
+
+/* --- Componentes: Card do Produto (Vendas) --- */
+.vendas {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+    .vendas img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .vendas h3 {
+        margin: 10px 0;
+        font-size: 13px;
+        padding: 6px;
+        background: linear-gradient(90deg, #1E3A8A, #2563EB);
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+.preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2f69e8;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.vendas button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #6b6663;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+    .vendas button:hover {
+        background: #e65c00;
+    }

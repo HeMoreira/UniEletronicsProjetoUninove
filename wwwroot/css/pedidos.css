@@ -1,0 +1,253 @@
+﻿/* ==========================================================================
+   ESTILOS ESPECÍFICOS: ORGANIZAÇÃO DE PEDIDOS
+   Caminho: wwwroot/css/pedidos.css
+   ========================================================================== */
+
+.pedidos-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(236, 236, 236, 0.85);
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #ffffff;
+    width: 280px;
+    flex-shrink: 0;
+    border-right: 1px solid #e2e8f0;
+}
+
+.sidebar-logo {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+    .sidebar-logo img {
+        max-width: 150px;
+        height: auto;
+    }
+
+.navbar-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px 30px;
+}
+
+    .navbar-lateral a {
+        color: #333333;
+        text-decoration: none;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+        .navbar-lateral a:hover,
+        .navbar-lateral a.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+.search-nav {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+    .search-nav input {
+        width: 100%;
+        height: 42px;
+        padding: 0 15px 0 40px;
+        border: none;
+        border-radius: 8px;
+        background-color: #f1f5f9;
+        font-size: 14px;
+    }
+
+    .search-nav .search {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #64748b;
+    }
+
+/* Header Unificado */
+.right-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-pedidos {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    color: #ffffff;
+}
+
+.header-titulo h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dashboard & Tabela */
+.dashboard {
+    padding: 30px;
+    flex: 1;
+}
+
+    .dashboard h1 {
+        color: #1E3A8A;
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-products {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+    .nav-products a {
+        text-decoration: none;
+        color: #64748b;
+        font-size: 16px;
+        cursor: pointer;
+        padding-bottom: 8px;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .nav-products .active-filter {
+        color: #1E3A8A;
+        font-weight: 600;
+        border-bottom-color: #1E3A8A;
+    }
+
+.border-line {
+    width: 100%;
+    border-bottom: 1px solid #cbd5e1;
+    margin: 15px 0 30px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.dashboard thead {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+}
+
+.dashboard th {
+    padding: 16px;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+}
+
+.dashboard td {
+    padding: 16px;
+    font-size: 15px;
+    text-align: center;
+    color: #333333;
+    vertical-align: middle;
+}
+
+.dashboard tbody tr {
+    border-top: 1px solid #f1f5f9;
+}
+
+    .dashboard tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+.dashboard td img {
+    width: 45px;
+    height: auto;
+    object-fit: contain;
+}
+
+.product-data {
+    color: #1d4ed8;
+    font-weight: 600;
+}
+
+/* Status Badges */
+.product-acao {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-enviado {
+    background-color: #d1fadf;
+    color: #027a48;
+}
+
+.status-cancelado {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-caminho {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-recebido {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .pedidos-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .navbar-lateral {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,221 @@
+﻿@page
+@model RastreioModel
+@{
+    ViewData["Title"] = "Rastreio de Pedido";
+}
+
+@* Seção para carregar os arquivos CSS da página *@
+@section Styles {
+    <!-- FontAwesome para os ícones da página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- Estilo específico da página de rastreio -->
+    <link rel="stylesheet" href="~/css/rastreio.css" asp-append-version="true" />
+}
+
+<!-- Conteúdo Principal do Rastreio -->
+<section class="trackin-top">
+    <div class="page-tittle">
+        <a asp-page="/Pedidos"><i class="fa-solid fa-arrow-left"></i> Voltar para pedidos</a>
+        <h4>Rastreamento do pedido</h4>
+        <p>Acompanhe em tempo real o status do seu pedido</p>
+    </div>
+
+    <div class="order-card-info">
+        <div class="order-card-container">
+            <div class="order-card-box">
+                <i class="fa-regular fa-file-lines icons"></i>
+                <div class="card-text">
+                    <p>Pedido</p>
+                    <h3>#92831</h3>
+                </div>
+            </div>
+            <div class="order-card-box">
+                <i class="fa-solid fa-calendar icons"></i>
+                <div class="card-text">
+                    <p>Data da compra</p>
+                    <h3>24/05/2026</h3>
+                </div>
+            </div>
+            <div class="order-card-box">
+                <i class="fa-solid fa-truck icons"></i>
+                <div class="card-text">
+                    <p>Transportadora</p>
+                    <h3>#92831</h3>
+                </div>
+            </div>
+            <div class="order-card-box">
+                <i class="fa-regular fa-calendar-check icons"></i>
+                <div class="card-text">
+                    <p>Previsão de entrega</p>
+                    <h3>#92831</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="tracking-content">
+    <aside class="right">
+        <section class="tracking-grid">
+            <h4>Status do pedido</h4>
+            <section class="tracking-status">
+                <div class="progress-line"></div>
+                <div class="progress-line-active"></div>
+                <div class="step completed">
+                    <div class="circle">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3>Recebido</h3>
+                    <span>24/05 13:42</span>
+                </div>
+                
+                <div class="step completed">
+                    <div class="circle">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3>Processando</h3>
+                    <span>24/05 14:10</span>
+                </div>
+                
+                <div class="step completed">
+                    <div class="circle">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3>Enviado</h3>
+                    <span>24/05 18:27</span>
+                </div>
+                
+                <div class="step completed">
+                    <div class="circle">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3>Entregue</h3>
+                    <span>-</span>
+                </div>
+            </section>
+            
+            <div class="status-list-container">
+                <div class="product-container">
+                    <div class="status-list">
+                        <div class="product-info">
+                            <div class="circle-info">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                            <div class="card-text2">
+                                <h3>Pedido recebido</h3>
+                                <p>Recebemos seu pedido e estamos preparando tudo para você.</p>
+                            </div>
+                        </div>
+                        <div class="status-date">
+                            <p class="date">24/05/2026</p>
+                            <p class="time">13:05</p>
+                        </div>
+                    </div>
+                    <div class="status-list">
+                        <div class="product-info">
+                            <div class="circle-info">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                            <div class="card-text2">
+                                <h3>Pedido processando</h3>
+                                <p>Estamos separando e embalando seus produtos.</p>
+                            </div>
+                        </div>
+                        <div class="status-date">
+                            <p class="date">24/05/2026</p>
+                            <p class="time">14:12</p>
+                        </div>
+                    </div>
+                    <div class="status-list">
+                        <div class="product-info">
+                            <div class="circle-info">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                            <div class="card-text2">
+                                <h3>Pedido enviado</h3>
+                                <p>Seu pedido foi enviado e está a caminho do destino.</p>
+                            </div>
+                        </div>
+                        <div class="status-date">
+                            <p class="date">24/05/2026</p>
+                            <p class="time">18:42</p>
+                        </div>
+                    </div>
+                    <div class="status-list">
+                        <div class="product-info">
+                            <div class="circle-info">
+                                <i class="fa-solid fa-truck"></i>
+                            </div>
+                            <div class="card-text2">
+                                <h3>Pedido chegou</h3>
+                                <p>Seu pedido foi entregue</p>
+                            </div>
+                        </div>
+                        <div class="status-date">
+                            <p class="date">26/05/2026</p>
+                            <p class="time">13:42</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-info-card">
+            <div class="product-card-info">
+                <h4>Itens do pedido</h4>
+                <div class="card-info-container">
+                    <div class="card-product">
+                        <!-- Imagem referenciada na pasta wwwroot/images/rastreio/ -->
+                        <img src="~/images/rastreio/airpods_max_azul-removebg-preview.png" alt="Headset Gamer RGB">
+                        <div class="card-texts">
+                            <h5>Apple AirPods Max - azul</h5>
+                            <p>Quantidade: 1</p>
+                            <p>Color: Azul</p>
+                        </div>
+                    </div>
+                    <div class="product-price">
+                        <h3>R$ 5.998,80</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
+
+    <aside class="tracking-left">
+        <div class="tracking-status-right">
+            <div class="status-box-right">
+                <div class="icon-circle">
+                    <p><i class="fa-solid fa-truck"></i></p>
+                </div>
+                <div class="status-text">
+                    <h3>Status atual</h3>
+                    <h2>Em transporte</h2>
+                    <p>Seu pedido está em trânsito e logo chegará até você!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tracking-map">
+            <h3>Localização atual</h3>
+            <!-- Imagem do mapa referenciada na pasta wwwroot/images/rastreio/ -->
+            <img src="~/images/rastreio/mapa.png" alt="Mapa de localização">
+            <div class="map-text">
+                <h3>São Paulo</h3>
+                <p>Centro de Distribuição</p>
+            </div>
+        </div>
+
+        <div class="tracking-help">
+            <div class="help-text">
+                <h3>Precisa de ajuda?</h3>
+                <p>Nossa equipe está pronta para te ajudar.</p>
+            </div>
+            <a href="#"><i class="fa-brands fa-rocketchat"></i> Falar com suporte</a>
+        </div>
+    </aside>
+</div>
+
+@* Seção para carregar os scripts Javascript específicos da página, caso existam no futuro *@
+@section Scripts {
+    <!-- <script src="~/js/rastreio.js" asp-append-version="true"></script> -->
+}

@@ -1,0 +1,106 @@
+﻿/* Container dos Cards */
+.cards-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+/* Cards de Navegação */
+.card-link {
+    background: white;
+    flex: 1 1 250px; 
+    max-width: 280px;
+    min-height: 160px;
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    color: #1E3A8A;
+}
+
+.card-link h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.card-link p {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 6px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card-link p:last-child {
+    margin-bottom: 0;
+}
+
+/* Container do Botão na Parte Inferior */
+.footer-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Estilização do Link como um Botão Moderno */
+.btn-voltar {
+    background-color: #1E3A8A; /* Cor de destaque (Azul) */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-voltar:hover {
+    background-color: #1e40af;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 58, 138, 0.3);
+}
+
+/* Responsividade para Telas Menores (Celulares) */
+@media (max-width: 600px) {
+    .cards-grid {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card-link {
+        max-width: 100%; /* Faz o card ocupar toda a largura disponível na coluna */
+        min-height: auto;
+    }
+
+    .footer-action {
+        padding: 0 10px;
+    }
+
+    .btn-voltar {
+        width: 100%; /* Botão ocupa toda a largura em telas muito pequenas para facilitar o toque */
+    }
+}

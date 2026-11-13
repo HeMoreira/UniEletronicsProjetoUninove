@@ -1,0 +1,151 @@
+﻿@page
+@using System.Globalization
+@model UniEletronicsProjetoUninove.Pages.EstoqueModel
+@{
+    ViewData["Title"] = "Controle de Estoque";
+    var ptBr = new CultureInfo("pt-BR");
+
+    // Aceita caminho completo (/images/..., http...) ou só o nome do arquivo
+    string ResolverImagem(string? imagem)
+    {
+        if (string.IsNullOrWhiteSpace(imagem))
+        {
+            return Url.Content("~/images/logo_sem_o_nome-removebg-preview.png");
+        }
+        if (imagem.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+        {
+            return imagem;
+        }
+        if (imagem.StartsWith("/") || imagem.StartsWith("~"))
+        {
+            return Url.Content(imagem.StartsWith("~") ? imagem : "~" + imagem);
+        }
+        return Url.Content("~/images/produtos-estoque/" + imagem);
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/estoque.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/estoque-extra.css" asp-append-version="true" />
+}
+
+<div class="estoque-container">
+    <!-- Menu Lateral / Navigation Sidebar -->
+    <aside class="sidebar-estoque">
+        <div class="logo-container">
+            <img src="~/images/logo_sem_o_nome-removebg-preview.png" alt="Logo UniEletronics" class="sidebar-logo">
+        </div>
+        <h2>ESTOQUE</h2>
+        <nav>
+            <ul class="sidebar-menu">
+                <li><a asp-page="/Index">Início</a></li>
+                <li><a asp-page="/RegistroVendas">Cadastrar</a></li>
+                <li><a asp-page="/Estoque">Ver Todos</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Conteúdo Principal / Tabela -->
+    <main class="tabela-container">
+        @if (!string.IsNullOrEmpty(Model.Mensagem))
+        {
+            <div class="alerta alerta-sucesso" role="status">@Model.Mensagem</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Erro))
+        {
+            <div class="alerta alerta-erro" role="alert">@Model.Erro</div>
+        }
+
+        <div class="busca-container">
+            <input type="text" id="inputBusca" class="form-control" placeholder="Pesquisar Produto...">
+        </div>
+
+        <div class="table-responsive">
+            <table class="tabela-estoque">
+                <thead>
+                    <tr>
+                        <th>CÓD</th>
+                        <th>IMAGEM</th>
+                        <th>PRODUTO</th>
+                        <th>CATEGORIA</th>
+                        <th>QUANTIDADE</th>
+                        <th>PREÇO</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Produtos.Any())
+                    {
+                        <tr class="linha-vazia">
+                            <td colspan="7">Nenhum produto cadastrado.</td>
+                        </tr>
+                    }
+                    @foreach (var p in Model.Produtos)
+                    {
+                        <tr>
+                            <td>@p.Codigo.ToString("D3")</td>
+                            <td><img src="@ResolverImagem(p.ImagemPrincipal)" alt="@p.Nome" class="img-produto"></td>
+                            <td>@p.Nome</td>
+                            <td>@p.Categoria</td>
+                            <td>@p.Quantidade</td>
+                            <td>@p.Preco.ToString("C2", ptBr)</td>
+                            <td class="acoes">
+                                <button type="button"
+                                        class="btn-edit"
+                                        data-id="@p.Id"
+                                        data-nome="@p.Nome"
+                                        data-categoria="@p.Categoria"
+                                        data-quantidade="@p.Quantidade"
+                                        data-preco="@p.Preco.ToString("0.00", CultureInfo.InvariantCulture)">
+                                    Editar
+                                </button>
+
+                                <form method="post" asp-page-handler="Excluir" asp-route-id="@p.Id"
+                                      class="form-excluir" data-nome="@p.Nome">
+                                    <button type="submit" class="btn-delete">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<!-- Modal de edição -->
+<div id="modalEditar" class="modal-overlay" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalEditarTitulo">
+        <h3 id="modalEditarTitulo">Editar produto</h3>
+
+        <form method="post" asp-page-handler="Editar" id="formEditar">
+            <input type="hidden" name="id" id="editId" />
+
+            <label for="editNome">Produto</label>
+            <input type="text" name="nome" id="editNome" maxlength="100" required />
+
+            <label for="editCategoria">Categoria</label>
+            <input type="text" name="categoria" id="editCategoria" maxlength="50" required />
+
+            <div class="modal-linha">
+                <div>
+                    <label for="editQuantidade">Quantidade</label>
+                    <input type="number" name="quantidade" id="editQuantidade" min="0" step="1" required />
+                </div>
+                <div>
+                    <label for="editPreco">Preço (R$)</label>
+                    <input type="number" name="preco" id="editPreco" min="0.01" max="999999.99" step="0.01" required />
+                </div>
+            </div>
+
+            <div class="modal-acoes">
+                <button type="button" class="btn-cancelar" id="btnCancelarEdicao">Cancelar</button>
+                <button type="submit" class="btn-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/estoque.js" asp-append-version="true"></script>
+}

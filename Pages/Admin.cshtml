@@ -1,0 +1,37 @@
+﻿@page
+@model AdminModel
+@{
+    ViewData["Title"] = "Painel de Controle";
+}
+
+<div class="admin-header">
+    <h1>@ViewData["Title"]</h1>
+    <a asp-page="/Index" class="btn-voltar">⬅ Voltar para a Página Inicial</a>
+</div>
+
+<div class="cards-grid">
+    <a asp-page="/Estoque" class="card-link">
+        <h2>📦 Estoque</h2>
+        <p>Gerenciar produtos</p>
+    </a>
+
+    <a asp-page="/Pedidos" class="card-link">
+        <h2>📋 Organização de Pedidos</h2>
+        <p>Mostrar produto do pedido</p>
+        <p>Mostrar status do pedido</p>
+    </a>
+
+    <a asp-page="/RegistroVendas" class="card-link">
+        <h2>🚚 Registro de Vendas</h2>
+        <p>Registrar Pedidos</p>
+    </a>
+
+    <a asp-page="/Rastreio" class="card-link">
+        <h2>🚚 Rastreio</h2>
+        <p>Acompanhar Rastreio</p>
+    </a>
+</div>
+
+@section Scripts {
+    <script src="~/js/index.js"></script>
+}

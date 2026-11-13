@@ -1,0 +1,65 @@
+html {
+    font-size: 14px;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid rgb(44, 44, 224);
+    min-height: 80px;
+    padding: 10px 20px;
+}
+
+.logohome {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+    .logohome img {
+        max-width: 100px;
+        height: auto;
+    }
+
+.titulo-cabecalho {
+    font-size: 1.25rem;
+    margin: 0;
+    word-break: break-word;
+}
+
+/* Conteúdo central que se expanda para empurrar o rodapé */
+.conteudo-principal {
+    flex: 1;
+}
+
+/* Rodapé fixado ao fim da página */
+.rodape {
+    text-align: center;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #1E3A8A, #2563EB);
+    color: white;
+    font-size: 14px;
+    margin-top: auto;
+}

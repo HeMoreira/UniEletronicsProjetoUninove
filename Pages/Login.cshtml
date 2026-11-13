@@ -1,0 +1,63 @@
+﻿@page
+@model UniEletronicsProjetoUninove.Pages.LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - UniEletronics</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-side">
+            <div class="overlay">
+                <h1>Bem-vindo à UniEletronics</h1>
+                <p>Faça login para acessar o sistema</p>
+            </div>
+        </div>
+
+        <div class="login-side">
+            <div class="login-box">
+                <img src="~/images/logo_sem_o_nome-removebg-preview.png" class="logo" alt="Logo UniEletronics">
+                <h2>Login</h2>
+
+                <!-- 🟢 MUDANÇA AQUI: Formato POST do ASP.NET Core -->
+                <form method="post">
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <!-- Exibe mensagens de erro, caso o usuário erre a senha -->
+                    <div asp-validation-summary="All" style="color: red; margin-bottom: 10px;"></div>
+
+                    <div class="input-group">
+                        <!-- 'asp-for' conecta o input ao modelo C# -->
+                        <input type="text" asp-for="Usuario" required>
+                        <label>E-mail</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" asp-for="Senha" required>
+                        <label>Senha</label>
+                    </div>
+
+                    <button type="submit">Entrar</button>
+                    <div style="margin-top: 10px; text-align: center;">
+                        <a href="/Cadastro" style="color: #666; text-decoration: none;">Criar conta</a>
+                    </div>
+
+                    <div style="margin-top: 15px; text-align: center;">
+                        <a href="/" style="color: #666; text-decoration: none;">Voltar ao Catálogo</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Catálogo de Produtos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/catalogo.css" asp-append-version="true" />
+}
+
+<div class="layout">
+    <div class="sidebar">
+        <aside class="categoria">
+            <h3 class="titulo-categoria">Categoria</h3>
+            <ul>
+                <li>Notebooks</li>
+                <li>Celulares</li>
+                <li>Relógios</li>
+                <li>Som/Áudios</li>
+                <li>Acessórios</li>
+                <li>Games/Consoles</li>
+            </ul>
+        </aside>
+
+        <aside class="filtro">
+            <h3 class="titulo-filtro">Filtro</h3>
+            <ul>
+                <li><input type="checkbox"> Promoção</li>
+                <li><input type="checkbox"> Mais vendidos</li>
+                <li><input type="checkbox"> Lançamentos</li>
+                <li><input type="checkbox"> Disponível</li>
+                <li><input type="checkbox"> Frete grátis</li>
+            </ul>
+        </aside>
+    </div>
+
+    <main class="produtos">
+        <div class="conteinerprodutos">
+
+            <div class="vendas">
+                <img src="~/images/catalogo/iphone13.png" alt="Iphone 13">
+                <h3>Iphone 13</h3> 
+                <p class="preco">R$ 1.879,99</p>
+                <button type="button">Comprar</button>
+            </div>
+
+            <div class="vendas">
+                <img src="~/images/catalogo/apple_watch_azul-removebg-preview.png" alt="Apple Watch">
+                <h3>Apple Watch SE</h3> 
+                <p class="preco">R$ 2.100,00</p>
+                <button type="button">Comprar</button>
+            </div>
+
+            <div class="vendas">
+                <img src="~/images/catalogo/airpods_max_azul-removebg-preview.png" alt="AirPods Max">
+                <h3>AirPods Max</h3> 
+                <p class="preco">R$ 2.699,99</p>
+                <button type="button">Comprar</button>
+            </div>
+
+            <div class="vendas">
+                <img src="~/images/catalogo/Samsung_Galaxy_Watch_azul-removebg-preview.png" alt="Samsung Galaxy SE">
+                <h3>Samsung Galaxy SE</h3> 
+                <p class="preco">R$ 1.879,99</p>
+                <button type="button">Comprar</button>
+            </div>
+        </div>
+    </main>
+</div>

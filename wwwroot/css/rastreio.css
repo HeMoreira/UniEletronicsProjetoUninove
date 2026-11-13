@@ -1,0 +1,374 @@
+﻿/* ========================================================
+   ESTILOS ESPECÍFICOS - PÁGINA DE RASTREIO
+   Arquivo: wwwroot/css/rastreio.css
+   ======================================================== */
+
+.trackin-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 3% 0;
+}
+
+.page-tittle a {
+    text-decoration: none;
+    color: #1E3A8A;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+    .page-tittle a:hover {
+        color: #7c97e0;
+        scale: 1.2;
+    }
+
+.page-tittle h4 {
+    font-size: 2.3rem;
+    color: #10204b;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.page-tittle p {
+    font-weight: bold;
+    color: rgb(110, 110, 110);
+    font-size: 1.3rem;
+}
+
+.order-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(49, 49, 49, 0.2);
+}
+
+.order-card-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icons {
+    font-size: 1.6rem;
+    color: #4b78f1;
+    background-color: rgb(200, 213, 243);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.card-text p {
+    font-weight: bold;
+    color: rgb(163, 162, 162);
+    margin-bottom: 5px;
+    text-wrap: nowrap;
+}
+
+.tracking-grid {
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 960px;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(49, 49, 49, 0.2);
+}
+
+    .tracking-grid h4 {
+        font-size: 1.6rem;
+        color: #10204b;
+    }
+
+.tracking-status {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 0 100px;
+}
+
+.progress-line {
+    position: absolute;
+    top: 18px;
+    left: 15%;
+    width: 70%;
+    height: 4px;
+    background: #d9d9d9;
+    z-index: 1;
+}
+
+.progress-line-active {
+    position: absolute;
+    top: 18px;
+    left: 15%;
+    width: 48%;
+    height: 4px;
+    background: #2563eb;
+    z-index: 2;
+}
+
+.step {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2563eb;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.step.active .circle {
+    background: green;
+    border: 4px solid #dff5e1;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.status-date {
+    text-align: end;
+    color: gray;
+    font-weight: bold;
+}
+
+.circle-info {
+    font-size: 1.5rem;
+    background: rgb(197, 252, 197);
+    padding: 10px 15px;
+    border-radius: 12px;
+    color: green;
+}
+
+.product-info-card {
+    background-color: white;
+    box-shadow: 0 1px 5px rgba(49, 49, 49, 0.2);
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.card-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.product-card-info h4 {
+    font-size: 1.8rem;
+}
+
+.card-texts h5 {
+    font-size: 1.7rem;
+}
+
+.card-texts p {
+    font-size: 1.2rem;
+    color: gray;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-price h3 {
+    font-size: 1.6rem;
+    color: #2563eb;
+}
+
+.card-product img {
+    width: 100px;
+    background: rgb(233, 233, 233);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.card-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.tracking-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tracking-status-right {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.right {
+    flex: 0 0 65%;
+}
+
+.status-box-right {
+    background-color: rgb(232, 255, 218);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 50px;
+}
+
+    .status-box-right .icon-circle {
+        background-color: rgb(183, 245, 183);
+        padding: 20px;
+        color: rgb(27, 66, 27);
+        border-radius: 50%;
+        font-size: 2.6rem;
+    }
+
+    .status-box-right .status-text p {
+        font-size: 1.1rem;
+        margin-top: 5px;
+        font-weight: bold;
+        color: rgb(80, 79, 79);
+        width: 100%;
+    }
+
+    .status-box-right .status-text h2 {
+        color: green;
+        font-size: 2.8rem;
+        margin-top: 5px;
+    }
+
+.tracking-left {
+    flex: 0 0 35%;
+}
+
+.tracking-map {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+    .tracking-map .map-text {
+        margin-top: 20px;
+    }
+
+    .tracking-map h3 {
+        font-size: 2.6rem;
+    }
+
+    .tracking-map p {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .tracking-map img {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+.tracking-help {
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+    .tracking-help .help-text h3 {
+        font-size: 1.4rem;
+    }
+
+    .tracking-help .help-text p {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        font-size: 1.2rem;
+        color: grey;
+    }
+
+    .tracking-help a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        background: rgb(240, 240, 252);
+        padding: 10px;
+        border-radius: 10px;
+        border: 3px solid blue;
+        margin-top: 20px;
+        color: blue;
+        font-weight: bold;
+    }
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .tracking-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .tracking-status {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .progress-line,
+    .progress-line-active {
+        display: none;
+    }
+
+    .status-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .status-date {
+        text-align: left;
+    }
+
+    .card-info-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .card-product {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .status-box-right {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+}

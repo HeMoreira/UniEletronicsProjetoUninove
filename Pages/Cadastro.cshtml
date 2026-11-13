@@ -1,0 +1,89 @@
+﻿@page
+@model UniEletronicsProjetoUninove.Pages.CadastroModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Cadastro";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - UniEletronics</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <style>
+        .field-error { color: red; font-size: 12px; display: block; margin-top: 4px; }
+        .date-label { display: block; font-size: 13px; color: #666; margin-bottom: 4px; }
+        .login-box { max-height: 100vh; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-side">
+            <div class="overlay">
+                <h1>Crie sua conta</h1>
+                <p>Cadastre-se para comprar na UniEletronics</p>
+            </div>
+        </div>
+
+        <div class="login-side">
+            <div class="login-box">
+                <img src="~/images/logo_sem_o_nome-removebg-preview.png" class="logo" alt="Logo UniEletronics">
+                <h2>Cadastro</h2>
+
+                <form method="post" autocomplete="off">
+
+                    <div asp-validation-summary="ModelOnly" style="color: red; margin-bottom: 10px;"></div>
+
+                    <div class="input-group">
+                        <input type="text" asp-for="Input.Nome" required>
+                        <label>Nome completo</label>
+                        <span asp-validation-for="Input.Nome" class="field-error"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="tel" asp-for="Input.Telefone" required maxlength="15">
+                        <label>Telefone (com DDD)</label>
+                        <span asp-validation-for="Input.Telefone" class="field-error"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" asp-for="Input.Gmail" required>
+                        <label>E-mail</label>
+                        <span asp-validation-for="Input.Gmail" class="field-error"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="date-label">Data de nascimento</span>
+                        <input type="date" asp-for="Input.DataNascimento" required>
+                        <span asp-validation-for="Input.DataNascimento" class="field-error"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" asp-for="Input.Senha" required minlength="6">
+                        <label>Senha</label>
+                        <span asp-validation-for="Input.Senha" class="field-error"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" asp-for="Input.ConfirmarSenha" required>
+                        <label>Confirmar senha</label>
+                        <span asp-validation-for="Input.ConfirmarSenha" class="field-error"></span>
+                    </div>
+
+                    <button type="submit">Cadastrar</button>
+
+                    <div style="margin-top: 15px; text-align: center;">
+                        <a href="/Login" style="color: #666; text-decoration: none;">Já tenho conta</a>
+                        &nbsp;|&nbsp;
+                        <a href="/" style="color: #666; text-decoration: none;">Voltar ao Catálogo</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

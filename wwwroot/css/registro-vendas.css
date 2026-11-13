@@ -1,0 +1,110 @@
+﻿body /* ==========================================================================
+   ESTILOS ESPECÍFICOS: REGISTRO DE VENDAS
+   Caminho: wwwroot/css/registro-vendas.css
+   ========================================================================== */
+/* Card Central do Formulário */
+.vendas-card {
+    max-width: 650px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vendas-titulo {
+    color: #1E3A8A;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Formulário e Inputs */
+.form-vendas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+    .form-vendas .form-control {
+        padding: 10px 14px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        font-size: 14px;
+    }
+
+        .form-vendas .form-control:focus {
+            border-color: #2563EB;
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+        }
+
+/* Botão de Ação */
+.btn-registrar {
+    background: #1E3A8A;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 5px;
+}
+
+    .btn-registrar:hover {
+        background: #1E40AF;
+    }
+
+/* Indicador de Total */
+.total-vendas {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    font-weight: 700;
+    text-align: center;
+    color: #1E3A8A;
+    font-size: 1.1rem;
+}
+
+/* Tabela de Registros */
+.table-responsive {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.tabela-vendas {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .tabela-vendas th,
+    .tabela-vendas td {
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .tabela-vendas th {
+        background: #334155;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+/* Botão Excluir */
+.btn-excluir {
+    background: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+    .btn-excluir:hover {
+        background: #dc2626;
+    }

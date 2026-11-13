@@ -1,0 +1,88 @@
+﻿@page
+@model UniEletronicsProjetoUninove.Pages.PedidosModel
+@{
+    ViewData["Title"] = "Organização de Pedidos";
+}
+
+<!-- CSS específico para esta página -->
+@section Styles {
+    <link rel="stylesheet" href="~/css/pedidos.css" asp-append-version="true" />
+}
+
+<div class="pedidos-container">
+    <!-- Menu Lateral (Sidebar) -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="~/images/logo_sem_o_nome-removebg-preview.png" alt="Logo UniEletronics">
+        </div>
+
+        <nav class="navbar-lateral">
+            <div class="search-nav">
+                <input type="text" placeholder="Pesquisar">
+                <ion-icon class="search" name="search-outline"></ion-icon>
+            </div>
+
+            <a asp-page="/Index"><ion-icon name="home-outline"></ion-icon> Dashboard</a>
+            <a asp-page="/Estoque"><ion-icon name="albums-outline"></ion-icon> Inventário</a>
+            <a asp-page="/Pedidos" class="active"><ion-icon name="cart-outline"></ion-icon> Pedidos</a>
+            <a asp-page="/Usuarios"><ion-icon name="person-circle-outline"></ion-icon> Usuários</a>
+            <a asp-page="/Suporte"><ion-icon name="headset-outline"></ion-icon> Suporte</a>
+            <a asp-page="/Configuracoes"><ion-icon name="settings-outline"></ion-icon> Configurações</a>
+        </nav>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <div class="right-wrap">
+        <!-- Header Unificado -->
+        <header class="header-pedidos">
+            <div class="header-titulo">
+                <h2>Painel de Controle - UniEletronics</h2>
+            </div>
+            <div class="header-icons">
+                <ion-icon name="mail-outline"></ion-icon>
+                <ion-icon name="notifications-outline"></ion-icon>
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <h1>Pedidos</h1>
+
+            <div class="nav-container">
+                <nav class="nav-products">
+                    <a class="filtro active-filter" onclick="filtrarPedidos('todos')">Todos os pedidos</a>
+                    <a class="filtro" onclick="filtrarPedidos('Enviado')">Produtos enviados</a>
+                    <a class="filtro" onclick="filtrarPedidos('A caminho')">Produtos a caminho</a>
+                    <a class="filtro" onclick="filtrarPedidos('Recebido')">Produtos recebidos</a>
+                    <a class="filtro" onclick="filtrarPedidos('Cancelado')">Produtos cancelados</a>
+                </nav>
+            </div>
+            
+            <div class="border-line"></div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Data</th>
+                            <th>Preço</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-produtos"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Ícones IonIcons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Script de lógica dos Pedidos -->
+    <script src="~/js/pedidos.js" asp-append-version="true"></script>
+}

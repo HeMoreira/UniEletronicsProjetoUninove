@@ -1,0 +1,18 @@
+﻿@if (User.Identity?.IsAuthenticated == true)
+{
+    <span>Olá, @User.Identity!.Name</span>
+
+    @if (User.IsInRole("Administrador"))
+    {
+        <a href="/Admin">Admin</a>
+    }
+
+    <form method="post" asp-page="/Logout" style="display:inline;">
+        <button type="submit" style="background:none;border:none;cursor:pointer;color:inherit;">Sair</button>
+    </form>
+}
+else
+{
+    <a href="/Login">Entrar</a>
+    <a href="/Cadastro">Cadastrar</a>
+}

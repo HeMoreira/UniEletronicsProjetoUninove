@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UniEletronics</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/UniEletronicsProjetoUninove.styles.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <!-- Cabeçalho padronizado e dinâmico -->
+    <header class="cabecalho d-flex justify-content-between align-items-center p-3">
+        <div class="d-flex align-items-center">
+            <div class="logohome me-3">
+                <img src="~/images/logo_sem_o_nome-removebg-preview.png" alt="Logo UniEletronics" style="max-height: 50px;">
+            </div>
+            <!-- O título agora muda dinamicamente de acordo com a página -->
+            <h2 class="titulo-cabecalho mb-0">@ViewData["Title"] - UniEletronics</h2>
+        </div>
+
+        <!-- Botões de autenticação no cabeçalho -->
+        <div class="d-flex align-items-center">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span class="text-white me-3">Olá, @User.Identity.Name!</span>
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a asp-page="/Admin" class="btn btn-primary me-2">Painel</a>
+                }
+
+                @* Logout precisa ser POST: o GET apenas redireciona e não encerra a sessão *@
+                <form method="post" asp-page="/Logout" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Sair</button>
+                </form>
+            }
+            else
+            {
+                <a asp-page="/Login" class="btn btn-outline-light me-2">Login</a>
+                <a asp-page="/Cadastro" class="btn btn-primary">Cadastrar</a>
+            }
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main role="main" class="conteudo-principal container py-4">
+        @RenderBody()
+    </main>
+
+    <!-- Rodapé padronizado -->
+    <footer class="rodape mt-auto">
+        <p class="mb-1">Projeto desenvolvido por:</p>
+        <p class="mb-0">Rian, Matheus, Henrique, Keven, Thiago, Richard, Victor</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
