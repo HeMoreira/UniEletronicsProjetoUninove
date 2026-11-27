@@ -1,0 +1,22 @@
+﻿@page
+@model LogsModel
+@{
+    ViewData["Title"] = "Arquivo de Log";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/logs.css" asp-append-version="true" />
+}
+
+<div class="admin-header">
+    <h1>@ViewData["Title"]</h1>
+    <a asp-page="/Admin" class="btn-voltar">⬅ Voltar ao Painel</a>
+</div>
+
+<div class="log-acoes">
+    <a asp-page="/Logs" class="btn btn-primary">Atualizar</a>
+    <a asp-page="/Logs" asp-page-handler="Baixar" class="btn btn-outline-secondary">Baixar arquivo</a>
+    <span class="log-info">Mostrando as últimas @Model.Linhas.Count linhas (máx. 1000) · mais recentes embaixo</span>
+</div>
+
+<pre class="log-conteudo">@(Model.Linhas.Count == 0 ? "(o arquivo de log ainda está vazio)" : string.Join("\n", Model.Linhas))</pre>

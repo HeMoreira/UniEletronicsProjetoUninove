@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using UniEletronicsProjetoUninove.Data;
 using UniEletronicsProjetoUninove.Models;
+using UniEletronicsProjetoUninove.Services;
 
 namespace UniEletronicsProjetoUninove.Pages;
 
 public class CadastroModel : PageModel
 {
     private readonly AppDbContext _context;
+    private readonly IRegistroLog _log;
 
-    public CadastroModel(AppDbContext context)
+    public CadastroModel(AppDbContext context, IRegistroLog log)
     {
         _context = context;
+        _log = log;
     }
 
     [BindProperty]
@@ -85,6 +88,11 @@ public class CadastroModel : PageModel
         var emailJaExiste = await _context.Usuarios.AnyAsync(u => u.Gmail == email);
         if (emailJaExiste)
         {
+            await _log.RegistrarAsync("CADASTRO_RECUSADO",
+                ("E-mail", email),
+                ("Motivo", "e-mail ja cadastrado"),
+                ("IP", HttpContext.Connection.RemoteIpAddress?.ToString()));
+
             ModelState.AddModelError("Input.Gmail", "Este e-mail já está cadastrado.");
             return Page();
         }
@@ -104,6 +112,15 @@ public class CadastroModel : PageModel
 
         _context.Usuarios.Add(usuario);
         await _context.SaveChangesAsync();
+
+        // Registra no arquivo de log (a senha NUNCA vai em texto: so uma mascara fixa)
+        await _log.RegistrarAsync("CADASTRO",
+            ("Nome", usuario.Nome),
+            ("Telefone", usuario.Telefone),
+            ("E-mail", usuario.Gmail),
+            ("Nascimento", usuario.DataNascimento.ToString("yyyy-MM-dd")),
+            ("Senha", "********"),
+            ("IP", HttpContext.Connection.RemoteIpAddress?.ToString()));
 
         // Já deixa o cliente logado após o cadastro (role "Cliente": só compra no catálogo)
         var claims = new List<Claim>

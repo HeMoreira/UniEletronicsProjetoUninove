@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using UniEletronicsProjetoUninove.Data;
+using UniEletronicsProjetoUninove.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 var caminhoBanco = Path.Combine(builder.Environment.ContentRootPath, "unieletronics.db");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite($"Data Source={caminhoBanco};Pooling=False"));
+
+// Log em arquivo (logs/registros.log): um unico objeto para a aplicacao toda
+builder.Services.AddSingleton<IRegistroLog, RegistroLogArquivo>();
 
 builder.Services.AddAuthorization(options =>
 {
