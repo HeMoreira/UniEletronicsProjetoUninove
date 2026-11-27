@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const campoId = document.getElementById("editId");
     const campoNome = document.getElementById("editNome");
     const campoCategoria = document.getElementById("editCategoria");
+    const campoStatus = document.getElementById("editStatus");
     const campoQuantidade = document.getElementById("editQuantidade");
     const campoPreco = document.getElementById("editPreco");
 
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
         campoId.value = botao.dataset.id;
         campoNome.value = botao.dataset.nome;
         campoCategoria.value = botao.dataset.categoria;
+        campoStatus.value = botao.dataset.status;
         campoQuantidade.value = botao.dataset.quantidade;
         campoPreco.value = botao.dataset.preco;
 

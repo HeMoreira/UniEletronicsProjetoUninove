@@ -12,6 +12,7 @@ namespace UniEletronicsProjetoUninove.Data
             context.Database.EnsureCreated();
 
             AtualizarEsquemaUsuarios(context);
+            AtualizarEsquemaProdutos(context);
             RecriarAdministrador(context, config, logger);
         }
 
@@ -47,6 +48,21 @@ namespace UniEletronicsProjetoUninove.Data
             // Só pode existir um usuário com Role = 'Administrador'
             context.Database.ExecuteSqlRaw(
                 @"CREATE UNIQUE INDEX IF NOT EXISTS ""IX_Usuarios_Role_Administrador"" ON ""Usuarios"" (""Role"") WHERE ""Role"" = 'Administrador'");
+        }
+
+        // Banco criado antes da propriedade Status: adiciona a coluna sem apagar os produtos existentes.
+        private static void AtualizarEsquemaProdutos(AppDbContext context)
+        {
+            var temStatus = context.Database
+                .SqlQueryRaw<int>("SELECT COUNT(*) AS Value FROM pragma_table_info('Produtos') WHERE name = 'Status'")
+                .AsEnumerable()
+                .First();
+
+            if (temStatus == 0)
+            {
+                context.Database.ExecuteSqlRaw(
+                    @"ALTER TABLE ""Produtos"" ADD COLUMN ""Status"" TEXT NOT NULL DEFAULT 'Enviado'");
+            }
         }
 
         // Cria o único administrador, apenas se ainda não existir nenhum.

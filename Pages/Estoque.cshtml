@@ -1,5 +1,6 @@
 ﻿@page
 @using System.Globalization
+@using UniEletronicsProjetoUninove.Models
 @model UniEletronicsProjetoUninove.Pages.EstoqueModel
 @{
     ViewData["Title"] = "Controle de Estoque";
@@ -95,6 +96,7 @@
                                         data-id="@p.Id"
                                         data-nome="@p.Nome"
                                         data-categoria="@p.Categoria"
+                                        data-status="@p.Status"
                                         data-quantidade="@p.Quantidade"
                                         data-preco="@p.Preco.ToString("0.00", CultureInfo.InvariantCulture)">
                                     Editar
@@ -126,6 +128,14 @@
 
             <label for="editCategoria">Categoria</label>
             <input type="text" name="categoria" id="editCategoria" maxlength="50" required />
+
+            <label for="editStatus">Status</label>
+            <select name="status" id="editStatus" class="form-select" required>
+                @foreach (var s in StatusProduto.Todos)
+                {
+                    <option value="@s">@s</option>
+                }
+            </select>
 
             <div class="modal-linha">
                 <div>
