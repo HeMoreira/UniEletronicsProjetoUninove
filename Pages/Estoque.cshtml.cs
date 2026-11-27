@@ -33,7 +33,7 @@ namespace UniEletronicsProjetoUninove.Pages
         }
 
         // POST /Estoque?handler=Editar
-        public async Task<IActionResult> OnPostEditarAsync(int id, string? nome, string? categoria, int quantidade, string? preco)
+        public async Task<IActionResult> OnPostEditarAsync(int id, string? nome, string? categoria, int quantidade, string? preco, string? status)
         {
             var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Id == id);
             if (produto == null)
@@ -44,6 +44,7 @@ namespace UniEletronicsProjetoUninove.Pages
 
             nome = nome?.Trim();
             categoria = categoria?.Trim();
+            status = status?.Trim();
 
             if (string.IsNullOrWhiteSpace(nome) || nome.Length > 100)
             {
@@ -72,8 +73,15 @@ namespace UniEletronicsProjetoUninove.Pages
                 return RedirectToPage();
             }
 
+            if (status == null || !StatusProduto.Todos.Contains(status))
+            {
+                Erro = "Selecione um status válido.";
+                return RedirectToPage();
+            }
+
             produto.Nome = nome;
             produto.Categoria = categoria;
+            produto.Status = status;
             produto.Quantidade = quantidade;
             produto.Preco = precoValor;
 
