@@ -1,7 +1,38 @@
 ﻿@page
+@using System.Globalization
+@using UniEletronicsProjetoUninove.Models
 @model UniEletronicsProjetoUninove.Pages.PedidosModel
 @{
     ViewData["Title"] = "Organização de Pedidos";
+    var ptBr = new CultureInfo("pt-BR");
+
+    // Aceita caminho completo (/uploads/..., /images/..., http...) ou só o nome do arquivo
+    string ResolverImagem(string? imagem)
+    {
+        if (string.IsNullOrWhiteSpace(imagem))
+        {
+            return Url.Content("~/images/logo_sem_o_nome-removebg-preview.png");
+        }
+        if (imagem.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+        {
+            return imagem;
+        }
+        if (imagem.StartsWith("/") || imagem.StartsWith("~"))
+        {
+            return Url.Content(imagem.StartsWith("~") ? imagem : "~" + imagem);
+        }
+        return Url.Content("~/images/produtos-estoque/" + imagem);
+    }
+
+    // Classe CSS do selo de status (definidas em pedidos.css)
+    string ClasseStatus(string? status) => status switch
+    {
+        StatusProduto.Enviado => "status-enviado",
+        StatusProduto.ACaminho => "status-caminho",
+        StatusProduto.Recebido => "status-recebido",
+        StatusProduto.Cancelado => "status-cancelado",
+        _ => ""
+    };
 }
 
 <!-- CSS específico para esta página -->
@@ -57,7 +88,7 @@
                     <a class="filtro" onclick="filtrarPedidos('Cancelado')">Produtos cancelados</a>
                 </nav>
             </div>
-            
+
             <div class="border-line"></div>
 
             <div class="table-wrapper">
@@ -71,7 +102,23 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody id="tabela-produtos"></tbody>
+                    <tbody id="tabela-produtos">
+                        @foreach (var p in Model.Produtos)
+                        {
+                            <tr data-status="@p.Status">
+                                <td>
+                                    <img src="@ResolverImagem(p.ImagemPrincipal)" alt="@p.Nome">
+                                </td>
+                                <td>@p.Nome</td>
+                                <td>@p.DataDeRegistro.ToString("dd/MM/yyyy")</td>
+                                <td><span class="product-data">@p.Preco.ToString("C2", ptBr)</span></td>
+                                <td><span class="product-acao @ClasseStatus(p.Status)">@p.Status</span></td>
+                            </tr>
+                        }
+                        <tr id="linha-vazia" hidden="@Model.Produtos.Any()">
+                            <td colspan="5">Nenhum pedido encontrado.</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -82,7 +129,7 @@
     <!-- Ícones IonIcons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
+
     <!-- Script de lógica dos Pedidos -->
     <script src="~/js/pedidos.js" asp-append-version="true"></script>
 }
