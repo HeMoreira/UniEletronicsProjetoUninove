@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using UniEletronicsProjetoUninove.Data;
+using UniEletronicsProjetoUninove.Services;
 using Papeis = UniEletronicsProjetoUninove.Models.Papeis;
 using UsuarioModel = UniEletronicsProjetoUninove.Models.Usuario; // alias: evita conflito com a propriedade "Usuario"
 
@@ -15,10 +16,12 @@ namespace UniEletronicsProjetoUninove.Pages;
 public class LoginModel : PageModel
 {
     private readonly AppDbContext _context;
+    private readonly IRegistroLog _log;
 
-    public LoginModel(AppDbContext context)
+    public LoginModel(AppDbContext context, IRegistroLog log)
     {
         _context = context;
+        _log = log;
     }
 
     [BindProperty]
@@ -72,6 +75,10 @@ public class LoginModel : PageModel
 
         if (!senhaOk || conta == null)
         {
+            await _log.RegistrarAsync("LOGIN_FALHA",
+                ("E-mail", email),
+                ("IP", HttpContext.Connection.RemoteIpAddress?.ToString()));
+
             ModelState.AddModelError(string.Empty, "Usuário ou senha inválidos.");
             return Page();
         }
@@ -87,6 +94,11 @@ public class LoginModel : PageModel
         await HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             new ClaimsPrincipal(identity));
+
+        await _log.RegistrarAsync("LOGIN",
+            ("E-mail", conta.Gmail),
+            ("Perfil", conta.Role),
+            ("IP", HttpContext.Connection.RemoteIpAddress?.ToString()));
 
         if (Url.IsLocalUrl(ReturnUrl))
             return LocalRedirect(ReturnUrl);
